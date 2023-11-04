@@ -1,7 +1,7 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 *{
   font-family: 'Righteous', sans-serif;
@@ -10,3 +10,4 @@
 .fill-on-hover:hover {
   fill: gray; /* Set the fill color when hovering */
 }
+
