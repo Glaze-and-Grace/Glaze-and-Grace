@@ -1,0 +1,39 @@
+{
+ "products":[
+  {
+    "title": "Blue Ceramic Vase",
+    "category": "Decorative Ceramics",
+    "image": "https://www.thesatchvillegiftcompany.co.uk/images/ww/products%204/CE480115.jpg",
+    "price": 59.99,
+    "old_price": 70.99
+  },
+  {
+    "title": "White Ceramic Plate Set",
+    "category": "Tablewares",
+    "image": "https://i.pinimg.com/564x/73/42/a8/7342a820fcf50784771958024fe0d1a9.jpg",
+    "price": 39.99,
+    "old_price": 50.99
+  },
+  {
+    "title": "Ceramic Mug with Lid",
+    "category": "Drinkwares",
+    "image": "https://i.pinimg.com/564x/a9/b8/d6/a9b8d6edf1c32767e36702a845b5a018.jpg",
+    "price": 19.99,
+    "old_price": 29.30
+  },
+  {
+    "title": "Ceramic Soap Dish",
+    "category": "Tablewares",
+    "image": "https://i.pinimg.com/564x/7c/eb/54/7ceb54e8a2146ec9c6b375fd5ccbf5a3.jpg",
+    "price": 14.99,
+    "old_price": 30
+  },
+  {
+    "title": "Ceramic Tissue Box Cover",
+    "category": "Decorative Ceramics",
+    "image": "https://i.pinimg.com/564x/20/48/e7/2048e75316f98d12070e08a68f8b6cdf.jpg",
+    "price": 19.99,
+    "old_price": 25.18
+  }
+]
+}
