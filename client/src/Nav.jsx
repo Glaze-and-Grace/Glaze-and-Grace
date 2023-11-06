@@ -6,6 +6,15 @@ const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+    function check(){
+        if(window.localStorage.getItem('token')){
+            console.log("S");
+            return true;
+        }else {
+            return false;
+        }
+    }
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -32,12 +41,12 @@ const Nav = () => {
                   Products
                 </Link>
 
-                <Link to="#" title="" class="text-base font-medium text-black">
+                <Link to="aboutusintro" title="" class="text-base font-medium text-black">
                   {" "}
                   About Us
                 </Link>
 
-                <Link to="#" title="" class="text-base font-medium text-black">
+                <Link to="Contactform" title="" class="text-base font-medium text-black">
                   {" "}
                   Contact Us
                 </Link>
@@ -93,10 +102,10 @@ const Nav = () => {
                 </svg>
               </button>
               <div className="flex space-x-10">
-                {isAuthenticated ? (
+                {check() ? (
                   <div class="hidden lg:flex justify-end lg:items-center lg:space-x-10">
-                    <a
-                      href="#"
+                    <Link
+                      to='/Profile'
                       title=""
                       class="flex items-center justify-center w-10 h-10 text-black"
                     >
@@ -115,32 +124,32 @@ const Nav = () => {
                           d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
                         />
                       </svg>{" "}
-                    </a>{" "}
+                    </Link>{" "}
                   </div>
                 ) : (
                   <div class="hidden lg:flex lg:items-center lg:space-x-10">
-                    <a
-                      href="#"
+                    <Link
+                      to = '/registration'
                       title=""
                       class="text-base font-medium text-black"
                     >
                       {" "}
                       Sign up
-                    </a>
+                    </Link>
 
-                    <a
-                      href="#"
+                    <Link
+                      to = '/signin'
                       title=""
                       class="text-base font-medium text-black"
                     >
                       {" "}
                       Sign in
-                    </a>
+                    </Link>
                   </div>
                 )}
                 <div class="hidden lg:flex lg:items-center lg:space-x-10">
-                  <a
-                    href="#"
+                  <Link
+                    to='/Cart'
                     title=""
                     class="flex items-center justify-center w-10 h-10 text-black"
                   >
@@ -158,7 +167,7 @@ const Nav = () => {
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                       />
                     </svg>
-                  </a>{" "}
+                  </Link>{" "}
                 </div>{" "}
               </div>
             </nav>

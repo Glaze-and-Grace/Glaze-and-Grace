@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import ProductCard from "./ProductCard";
 
@@ -12,38 +12,37 @@ const Catalog = () => {
   const [sortOption, setSortOption] = useState("default");
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  var endPoint = "";
+//   var endPoint = "";
 
   // Filter products based on selected category
   const filteredProducts =
     selectedCategory === "All"
       ? products
-      : products.filter((product) => product.category === selectedCategory);
+      : products.filter((product) => product.category.toLowerCase() === selectedCategory.toLowerCase());
 
   // Filter products based on search input
   const filteredBySearch = searchInput
     ? filteredProducts.filter((product) =>
-        product.title.toLowerCase().includes(searchInput.toLowerCase())
+        product.name.toLowerCase().includes(searchInput.toLowerCase())
       )
     : filteredProducts;
 
   // Sort products based on the selected sort option
   const sortedProducts = [...filteredBySearch];
   if (sortOption === "priceLowToHigh") {
-    sortedProducts.sort((a, b) => a.price - b.price);
+    sortedProducts.sort((a, b) => parseInt(a.price) - parseInt(b.price));
   } else if (sortOption === "priceHighToLow") {
-    sortedProducts.sort((a, b) => b.price - a.price);
+    sortedProducts.sort((a, b) => parseInt(b.price) - parseInt(a.price));
   } else if (sortOption === "topRated") {
-    sortedProducts.sort((a, b) => b.rating - a.rating);
-  } else if (sortOption === "newArrivals") {
-    // Implement your sorting logic for new arrivals
+    sortedProducts.sort((a, b) => parseInt(b.price) - parseInt(a.price));
   }
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/products")
+      .get("http://localhost:8080/getallproducts")
       .then((response) => {
-        setProducts(response.data);
+        console.log(response.data.products);
+        setProducts(response.data.products);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -124,21 +123,21 @@ const Catalog = () => {
               </button>
               <button
                 className={`border px-4 py-2 rounded-lg ${
-                  selectedCategory === "Tablewares"
+                  selectedCategory === "Tableware"
                     ? "border-blue-500"
                     : "border-gray-300"
                 }`}
-                onClick={() => setSelectedCategory("Tablewares")}
+                onClick={() => setSelectedCategory("Tableware")}
               >
                 Tablewares
               </button>
               <button
                 className={`border px-4 py-2 rounded-lg ${
-                  selectedCategory === "Drinkwares"
+                  selectedCategory === "Drinkware"
                     ? "border-blue-500"
                     : "border-gray-300"
                 }`}
-                onClick={() => setSelectedCategory("Drinkwares")}
+                onClick={() => setSelectedCategory("Drinkware")}
               >
                 Drinkwares
               </button>
@@ -176,7 +175,6 @@ const Catalog = () => {
                 <option value="priceLowToHigh">Price: Low to High</option>
                 <option value="priceHighToLow">Price: High to Low</option>
                 <option value="topRated">Top Rated</option>
-                <option value="newArrivals">New Arrivals</option>
               </select>
             </label>
           </div>
@@ -187,11 +185,11 @@ const Catalog = () => {
             {displayedProducts.map((product) => (
               <ProductCard
                 id={product.id}
-                title={product.title}
-                category={product.category}
+                title={product.name}
+                category={"product.category"}
                 price={product.price}
-                image={product.image}
-                old_price={product.old_price}
+                image={product.images[0]}
+                // old_price={product.old_price}
               />
             ))}
           </div>

@@ -2,6 +2,7 @@ const db = require('../config');
 
 async function getInfornation(id){
     try{
+        console.log(id);
         const query = `select username, email from users where id = $1`;
         const User = await db.query(query, [id]);
         return User.rows[0];
@@ -54,10 +55,21 @@ async function editInfo(id, username, email){
     }
 };
 
+async function addwish(userID,productID){
+    try{    
+        const query = 'insert into wishlist (product_id, user_id) values ($1, $2)';
+        const add = await db.query(query, [userID,productID]);
+        return 'done';
+    }catch(error) {
+        return error;
+    }
+}
+
 module.exports = {
     getInfornation,
     getWishlist,
     getHistory,
     deleteFromWishlist,
-    editInfo
+    editInfo,
+    addwish
 };

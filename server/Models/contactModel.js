@@ -1,26 +1,36 @@
 const { query } = require('express');
 const db = require('../config');
+const { func } = require('joi');
 
-async function contactus(id, name, email, message) {
+async function contactus(user_name, user_email, user_message) {
     try {
-        console.log(id, name, email, message)
+        console.log(user_name, user_email, user_message)
 
-        //query = `INSERT INTO contactus (user_id, user_name, user_email, user_message) VALUES ($1, $2, $3,$4) RETURNING *`;
-        const result = await db.query(`INSERT INTO contactus (user_id, user_name, user_email, user_message) VALUES ($1, $2, $3, $4)`, [id, name, email, message]);
+        const query = `INSERT INTO contactus ( user_name, user_email, user_message) VALUES ($1, $2, $3)`;
+        const result = await db.query(query, [user_name, user_email, user_message]);
         //const newmessege = result.rows[0];
         console.log("result1");
-        //return newmessege;
+        return 'good';
     } catch (error) {
         console.log(error);
         throw error;
     }
   }
 
-
+async function gatall(){
+    try{
+        const query = 'select * from contactus';
+        const result = await db.query(query);
+        return result.rows;
+    }catch(error){
+        return error;
+    }
+}
 
 
   module.exports = {
-    contactus
+    contactus,
+    gatall
 };
 
 // const result = await pool.query(

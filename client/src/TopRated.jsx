@@ -23,9 +23,10 @@ const TopRated = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/products")
+      .get("http://localhost:8080/product/toprated")
       .then((response) => {
-        setProducts(response.data);
+        console.log(response.data.products);
+        setProducts(response.data.products);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -65,11 +66,11 @@ const TopRated = () => {
           <SwiperSlide key={product.id}>
             <ProductCard
               id={product.id}
-              title={product.title}
-              category={product.category}
+              title={product.name}
+            //   category={product.category}
               price={product.price}
-              image={product.image}
-              old_price={product.old_price}
+              image={product.images[1]}
+            //   old_price={product.old_price}
             />{" "}
           </SwiperSlide>
         ))}

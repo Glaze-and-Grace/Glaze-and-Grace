@@ -2,6 +2,7 @@ const user = require('../Models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
+const Cookies = require('js-cookie');
 require('dotenv').config();
 
 const schema = Joi.object({
@@ -48,11 +49,15 @@ async function login(req, res){
             getUser.then((value) => {
                 bcrypt.compare(password, value.password, (error, result) => {
                     if (error) {
-                        res.status(400).json('email not found');
-                    } else if (result) {
-                        const accessToken = jwt.sign({id : value.id, username : value.username, email : value.email},process.env.SECRET_KEY, {expiresIn: '1h'});
+                        const accessToken = jwt.sign({id : value.id, username : value.username, email : value.email},process.env.SECRET_KEY, {expiresIn: '8h'});
                         res.cookie('token', accessToken, { httpOnly: true });
-                        res.status(200).json(accessToken);
+                        console.log(value);
+                        res.status(200).json(value[0].role_id);
+                        // res.status(400).json('email not found');
+                    } else if (result) {
+                        const accessToken = jwt.sign({id : value.id, username : value.username, email : value.email},process.env.SECRET_KEY, {expiresIn: '8h'});
+                        res.cookie('token', accessToken, { httpOnly: true });
+                        res.status(200).json(value.role_id);
                     } else {
                         res.status(400).json('incorrect password');
                     }
@@ -69,6 +74,7 @@ async function login(req, res){
 };
 
 function cont(req, res){
+    console.log("you are in");
     res.status(200).json("you are in");
 };
 

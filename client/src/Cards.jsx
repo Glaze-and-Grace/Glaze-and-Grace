@@ -14,13 +14,14 @@ import { useAuth } from "./AuthContext";
 import ProductCard from "./ProductCard";
 
 const ProductList = ({ openModal }) => {
-  const [products, setProducts] = useState([]);
+  const [Products, setProducts] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/products")
+      .get("http://localhost:8080/product/newproduct")
       .then((response) => {
-        setProducts(response.data);
+        // console.log(response.data.products[0].images[0]);
+        setProducts(response.data.products);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -56,15 +57,15 @@ const ProductList = ({ openModal }) => {
         loop={true}
         effect="fade"
       >
-        {products.map((product) => (
+        {Products.map((product) => (
           <SwiperSlide key={product.id}>
             <ProductCard
               id={product.id}
-              title={product.title}
-              category={product.category}
+              title={product.name}
+            //   category={product.category}
               price={product.price}
-              image={product.image}
-              old_price={product.old_price}
+              image={product.images[0]}
+            //   old_price={product.old_price}
               openModal={openModal}
             />{" "}
           </SwiperSlide>

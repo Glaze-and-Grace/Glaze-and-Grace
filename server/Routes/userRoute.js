@@ -7,5 +7,6 @@ const middleware = require('../middleware/authorization');
 router.post('/register', usercontroller.register);
 router.post('/login', usercontroller.login);
 router.get('/protected', middleware.authorize, usercontroller.cont);
+router.post('logout');
 
 module.exports = router;

@@ -12,9 +12,11 @@ async function login(email){
     try{
         const query = `select * from users where email = $1`;
         const user = await db.query(query, [email]);
-        if ( user.rows[0] != null){
-            return user.rows[0];
+        if (user.rows[0] != null){
+            // console.log(user);
+            return user.rows;
         } else {
+            // console.log(user);
             return "email is not found";
         }
     } catch(error){

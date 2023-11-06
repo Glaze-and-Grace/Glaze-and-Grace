@@ -41,16 +41,16 @@ function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    // if (validateForm()) {
       try {
-        const response = await axios.post("/", formData);
+        const response = await axios.post("http://localhost:8080/register", formData);
         console.log(response.data.message);
         redirectToLanding();
       } catch (error) {
         console.error("Error registering user:", error);
         setErrors(error.response.data.errors);
       }
-    }
+    // }
   };
 
     const sectionStyle = {
