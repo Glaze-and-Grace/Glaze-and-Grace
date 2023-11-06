@@ -6,6 +6,7 @@ import TopRated from "../TopRated";
 import Modal from "../LoginModal";
 import Categories from "../Categories";
 import { useState } from "react";
+// import {} from "../assets/uploads"
 
 const Home = ({ openModal }) => {
   return (

@@ -4,7 +4,7 @@ const path = require('path');
 
 
 const storage = multer.diskStorage({
-  destination: '../assets/uploads', 
+  destination: '../../client/src/assets/uploads', 
   filename: function (req, file, cb) {
     cb(null, 'image-' + Date.now() + path.extname(file.originalname));
   }
@@ -28,8 +28,8 @@ const createproduct = async (req, res) => {
         return res.status(400).json({ success: false, error: err.message });
       }
       
-      const { product_name, product_detail, price, counts, category_id } = req.body;
-      const images = req.files.map(file => file.filename);
+      const { product_name, product_detail,images, price, counts, category_id } = req.body;
+    //   const images = req.files.map(file => file.filename);
       
   
       await Dashboard.createproduct(product_name, product_detail, images, price, counts, category_id);
@@ -86,10 +86,10 @@ const createproduct = async (req, res) => {
         
         try {
           const { product_name, product_detail, price, counts, category_id } = req.body;
-          const images = req.files.map(file => file.filename);
+        //   const images = req.files.map(file => file.filename);
           const productId = req.params.id;
           
-          await Dashboard.updateproduct(productId, product_name, product_detail, images, price, counts, category_id);
+          await Dashboard.updateproduct(productId, product_name, product_detail, price, counts, category_id);
           
           res.status(200).json({ success: true, message: 'Product updated successfully' });
         } catch (err) {
@@ -116,9 +116,36 @@ const createproduct = async (req, res) => {
     }
   }
 
+  const allproducts = async (req, res, next) => {
+
+    try {
+      const product = await Dashboard.allproducts();
+  
+      const modifiedResponse = {
+        product: product.map(item => {
+          return {
+            id: item.id,
+            name: item.product_name,
+            details: item.product_detail,
+            category: item.category,
+            images: JSON.parse(item.image), 
+            price: item.price,
+            counts: item.counts
+          };
+        })
+      };
+      res.status(200).json(modifiedResponse); 
+    } 
+    catch (err) {
+        console.error(err);
+        res.status(400).json({ success: false, error: 'Error in getting products' });
+      }
+    };
+
   module.exports = {
     createproduct,
     productdetail,
     updateproduct,
-    deleteproduct
+    deleteproduct,
+    allproducts
   };

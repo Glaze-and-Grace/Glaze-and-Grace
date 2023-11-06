@@ -20,16 +20,16 @@ app.use(bodyParser.json());
 
 app.use(cookieParser());
 
-app.use('/', homeroutes);
+app.use(homeroutes);
 app.use(contactroutes);
 app.use(dashboarduser);
 //mothana
 app.use(userRouter);
 app.use(userProfile);
 //sanad
-app.use(dashboardRoute)
-app.use(shoppingRoute)
-app.use(reactionRoute)
+app.use(dashboardRoute);
+app.use(shoppingRoute);
+app.use(reactionRoute);
 
 
 app.listen(port, ()=> {

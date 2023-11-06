@@ -1,37 +1,55 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const ProductCard = ({
   id,
   title,
   image,
   price,
-  old_price,
+//   old_price,
   category,
   openModal,
 }) => {
   const { isAuthenticated } = useAuth();
 
-  const handleAddToCart = () => {
+ const handleAddToCart = async () => {
     if (!isAuthenticated) {
       openModal();
     } else {
-      // Perform the "Add to Cart" action here
+        try {
+            const response = await axios.post(`http://localhost:8080/addtocart/${id}`, 10);
+              console.log(response);
+            //   return response.data[0];
+          } catch (error) {
+              console.log(error);
+            throw error;
+          }
     }
   };
 
-  const handleAddToWishlist = () => {
+  const handleAddToWishlist = async () => {
     if (!isAuthenticated) {
       openModal();
     } else {
-      // Perform the "Add to Cart" action here
+        try {
+            const response = await axios.post(`http://localhost:8080/addwishlist/30`);
+              console.log(response);
+              console.log(id);
+            //   return response.data[0];
+          } catch (error) {
+              console.log(error);
+            throw error;
+          }
     }
   };
   return (
     <div class="w-72  bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl mb-6">
-      <a href="#">
+      
         <div className="relative">
-          <img className="h-72 w-72" src={image} alt="Card Image" />
+          {/* <img className="h-72 w-72" src={`../../assets/uploads/${image}`} alt="Card Image" /> */}
+          <img className="h-72 w-72" src={require(`../src/assets/uploads/${image}`)} alt="Card Image" />
           <div className=" absolute top-3 right-3 ">
             <button onClick={handleAddToWishlist}>
               <svg
@@ -56,15 +74,18 @@ const ProductCard = ({
         </div>
         <div class="px-4 py-3 w-72">
           <span class="text-gray-400 mr-3 uppercase text-xs">{category}</span>
+          <Link to={`/details/${id}`}>
           <p class="text-lg font-medium text-black truncate block capitalize">
+          
             {title}
           </p>
+          </Link>
           <div class="flex items-center">
             <p class="text-lg font-medium text-black cursor-auto my-3">
               {price}
             </p>
             <del>
-              <p class="text-sm text-gray-600 cursor-auto ml-2">{old_price}</p>
+              <p class="text-sm text-gray-600 cursor-auto ml-2"></p>
             </del>
             <div class="ml-auto">
               <button onClick={handleAddToCart}>
@@ -86,7 +107,7 @@ const ProductCard = ({
             </div>
           </div>
         </div>
-      </a>
+      
       {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
     </div>
   );

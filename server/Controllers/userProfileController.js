@@ -22,7 +22,9 @@ function validation(username = "anything", email = "anything", password = "anyth
 
 async function information(req, res){
     try{
+        console.log("here")
         const userID = req.user.id;
+        console.log(userID);
         const theUser = await userProfileModel.getInfornation(userID);
         res.status(200).json(theUser);
     } catch(error){
@@ -77,11 +79,24 @@ async function editWishlist(req, res){
     }
 };
 
+async function addtowishlist(req, res){
+    try{
+        const userID = 34;
+        const productID = req.params.id;
+        const wishlistmodel = await userProfileModel.addwish(userID,productID);
+        res.status(200).json(wishlistmodel);
+    }catch(error){
+        console.log(error);
+        res.status(500).json(error);
+    }
+}
+
 
 module.exports = {
     information,
     wishlist,
     history,
     editWishlist,
-    editInformation
+    editInformation,
+    addtowishlist
 };

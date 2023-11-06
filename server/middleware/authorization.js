@@ -3,9 +3,10 @@ require('dotenv').config();
 
 async function authorize(req, res, next){
     try{
-        const token = req.cookies.token;
+        const token = localStorage.getItem('token');
+        console.log(token);
         if ("token" == null){
-            res.clearCookie("token");
+            // res.clearCookie("token");
             res.status(401).json("you need to login first");
         }else {
             const user = jwt.verify(token, process.env.SECRET_KEY);

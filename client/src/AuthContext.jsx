@@ -6,11 +6,10 @@ export const AuthContext = createContext();
 // Create an AuthProvider component
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("token")
+    !!window.localStorage.getItem('token')
   );
 
   const login = (token) => {
-    //if
     localStorage.setItem("token", token);
     setIsAuthenticated(true);
   };

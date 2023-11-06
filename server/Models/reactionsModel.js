@@ -2,14 +2,14 @@ const db = require('../config');
 const Reaction = {};
 
 
-Reaction.addrate = async (productId, user_id, rate) => {
+Reaction.addrate = async (productId, userID, rate) => {
     try {
     
         const insertrating = await db.query(
             `
             INSERT INTO reaction (rate, user_id, product_id) VALUES ($1, $2, $3) RETURNING rate
             `,
-            [rate, user_id, productId]
+            [rate, userID, productId]
         );
         
         const insertedRatingValue = insertrating.rows[0].rate;
@@ -25,5 +25,27 @@ Reaction.addrate = async (productId, user_id, rate) => {
         throw error;
     }
 };
+
+Reaction.addcomment = async(productId, userID, comment) => {
+    try{
+        const userid = 32;
+        const result = db.query('insert into reaction (user_id ,product_id, comment) values ($1,$2,$3) RETURNING *;'[userid, productId, comment]);
+        console.log((await result).rows);
+        return 'done';
+    } catch(error){
+        console.error(error);
+        throw error;
+    }
+}
+
+Reaction.getcomments = async(productId) => {
+    try{
+        const result = db.query('select reaction.comment,users.username from reaction inner join users on users.id = reaction.user_id;'[productId]);
+        return result;
+    } catch(error){
+        console.error(error);
+        throw error;
+    }
+}
 
 module.exports = Reaction

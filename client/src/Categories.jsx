@@ -4,6 +4,7 @@ import cat2 from "./image 7.png";
 import cat3 from "./image 6.png";
 import cat4 from "./image 5.png";
 import logo from "./vase.png";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
@@ -15,25 +16,33 @@ const Categories = () => {
         <div class="flex flex-row justify-center flex-wrap gap-5 items-center text-center ">
           <div class="bg-white rounded-lg p-6 shadow-md w-[180px] h-[250px] text-center">
             <img className="mb-2 w-[80px] mx-auto" src={logo} />
-            <h2 class="text-xl font-medium mb-2">Tarjeta 1</h2>
+            <Link to="/catalog/1">
+              <h2 class="text-xl font-medium mb-2">Drinkwares</h2>
+            </Link>
             <p class="text-gray-600">Contenido de la tarjeta 1...</p>
           </div>
 
           <div class="bg-white rounded-lg p-6 shadow-md w-[180px] h-[250px] text-center">
             <img className="mb-2 w-[80px] mx-auto" src={logo} />
-            <h2 class="text-xl font-medium mb-2">Tarjeta 2</h2>
+            <Link to="/catalog/2">
+              <h2 class="text-xl font-medium mb-2">Tablewares</h2>
+            </Link>
             <p class="text-gray-600">Contenido de la tarjeta 2...</p>
           </div>
 
           <div class="bg-white rounded-lg p-6 shadow-md w-[180px] h-[250px] text-center">
             <img className="mb-2 w-[80px] mx-auto" src={logo} />
-            <h2 class="text-xl font-medium mb-2">Tarjeta 3</h2>
+            <Link to="/catalog/3">
+              <h2 class="text-xl font-medium mb-2">Cookwares</h2>
+            </Link>
             <p class="text-gray-600">Contenido de la tarjeta 3...</p>
           </div>
 
           <div class="bg-white rounded-lg p-6 shadow-md w-[180px] h-[250px] text-center">
             <img className="mb-2 w-[80px] mx-auto" src={logo} />
-            <h2 class="text-xl font-medium mb-2">Tarjeta 4</h2>
+            <Link to="/catalog/4">
+              <h2 class="text-xl font-medium mb-2">Decoration</h2>
+            </Link>
             <p class="text-gray-600">Contenido de la tarjeta 4...</p>
           </div>
         </div>

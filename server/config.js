@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 require('dotenv').config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const pool = new Pool({
     user: process.env.DB_USER,

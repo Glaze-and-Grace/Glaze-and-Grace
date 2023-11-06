@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
+
 
 const Comment = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
+
+  useEffect(() => {
+    axios.get(`http://localhost:8080/reaction/getcomment/${30}`)
+      .then((response) => {
+        setComments(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching comments: ', error);
+      });
+  }, []); 
 
   const handleCommentChange = (e) => {
     setNewComment(e.target.value);
@@ -14,8 +27,24 @@ const Comment = () => {
       return;
     }
 
-    setComments([...comments, newComment]);
-    setNewComment('');
+    axios.post(`http://localhost:8080/reaction/addcomment/${30}`, { comment : newComment })
+      .then((response) => {
+        setComments([...comments, response.data]);
+        setNewComment('');
+      })
+      .catch((error) => {
+        console.error('Error adding comment: ', error);
+      });
+  };
+
+  const handleDeleteComment = (commentId) => {
+    axios.delete(`/${commentId}`)
+      .then(() => {
+        setComments(comments.filter((comment) => comment.id !== commentId));
+      })
+      .catch((error) => {
+        console.error('Error deleting comment: ', error);
+      });
   };
 
   return (
@@ -28,21 +57,25 @@ const Comment = () => {
           value={newComment}
           onChange={handleCommentChange}
         />
-        <button type="submit" className="bg-[#17403C]  text-white py-2 px-4 rounded hover:bg-[#C3CAC3]   ">
+        <button type="submit" className="bg-[#17403C]  text-white py-2 px-4 rounded hover:bg-[#C3CAC3]">
           Add Comment
         </button>
       </form>
       <div className="space-y-4">
-        {comments.map((comment, index) => (
-          <div key={index} className="bg-[#C3CAC3]  border border-[#17403C]  p-4 rounded">
-            {comment}
+        {comments.map((comment) => (
+          <div key={comment.id} className="bg-[#C3CAC3]  border border-[#17403C]  p-4 rounded">
+            {comment.text}
+            <button
+              onClick={() => handleDeleteComment(comment.id)}
+              className="text-red-600 hover:underline ml-2 cursor-pointer"
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
     </div>
   );
 };
-
-
 
 export default Comment;
