@@ -3,13 +3,20 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 
 const addtocart = async (req, res) => {
+    const { count } = req.body;
+    console.log(count);
   try {
-      const {count} = req.body;
+    let number;
+      if (count == null){
+        number = 1;
+      }else{
+        number = count;
+      }
       const productId = req.params.id;
-      const userID = req.user.id;
+      const userID = 38;
     
 
-      await Shopping.addtocart(productId, userID, count);
+      await Shopping.addtocart(productId, userID, number);
 
       res.status(201).json({ success: true, message: 'Product added successfully' });
   } catch (err) {
@@ -22,7 +29,7 @@ const addtocart = async (req, res) => {
 const getcartproducts = async (req, res, next) => {
 
     try {
-      const userID = req.user.id;
+      const userID = 38;
       const shoppingcart = await Shopping.getcartproducts(userID);
 
       const modifiedResponse = {
@@ -40,7 +47,7 @@ const getcartproducts = async (req, res, next) => {
         })
       };
       res.status(200).json(modifiedResponse); 
-      res.status(200).json(shoppingcart);
+    //   res.status(200).json(shoppingcart);
     } 
     catch (err) {
         console.error(err);
@@ -51,7 +58,7 @@ const getcartproducts = async (req, res, next) => {
     const deleteproduct = async (req, res) => {
       try {
           const productId = req.params.id;
-          const userID = req.user.id;
+          const userID = 38;
 
   
         await Shopping.deleteproduct(productId,userID);
@@ -84,7 +91,7 @@ const getcartproducts = async (req, res, next) => {
 
   const totalprice = async (req, res) => {
     try {
-      const userID = req.user.id;
+      const userID = 38;
       const total =  await Shopping.totalprice(userID);
 
         res.status(200).json({ success: true, total });
@@ -96,45 +103,45 @@ const getcartproducts = async (req, res, next) => {
 
 
 const createCheckoutSession = async (req, res) => {
-  try {
-    const userID = req.user.id;
-    const cartProducts = await Shopping.getcartproducts(userID); 
-    const totalPriceResult = await Shopping.totalprice(userID); 
+    try {
+      const userID = req.user.id;
+      const cartProducts = await Shopping.getcartproducts(userID); 
+      const totalPriceResult = await Shopping.totalprice(userID); 
   
-
-    const totalAmount = totalPriceResult[0].sum;
-    
-
-    const lineItems = cartProducts.map(product => {
-      return {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: product.product_name,
+  
+      const totalAmount = totalPriceResult[0].sum;
+  
+  
+      const lineItems = cartProducts.map(product => {
+        return {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: product.product_name,
+            },
+            unit_amount: Math.round(product.total_price * 100), 
           },
-          unit_amount: Math.round(product.total_price * 100), 
-        },
-        quantity: product.count,
-      };
-    });
-
+          quantity: product.count-(product.count-1),
+        };
+      });
   
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: lineItems,
-      mode: 'payment',
-      success_url: 'http://localhost:3000/success',
-      cancel_url: 'http://localhost:3000/cancel',
-    });
-
-    res.json({ id: session.id });
-    await Shopping.checkconfirm(userID); 
-    console.log(totalAmount);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: 'payment failed' });
-  }
-};
+  
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: lineItems,
+        mode: 'payment',
+        success_url: 'http://localhost:3000/success',
+        cancel_url: 'http://localhost:3000/cancel',
+      });
+  
+      res.json({ id: session.id });
+      await Shopping.checkconfirm(userID); 
+      console.log(totalAmount);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, error: 'payment failed' });
+    }
+  };
 
     module.exports = {
         addtocart,

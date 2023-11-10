@@ -6,7 +6,7 @@ const OldPurchasesTable = ({ items }) => {
     <table className="p-4 mt-4 table-auto">
       <thead>
         <tr>
-          <th className="px-4 py-2">Item Image</th>
+          {/* <th className="px-4 py-2">Item Image</th> */}
           <th className="px-4 py-2">Item Name</th>
           <th className="px-4 py-2">Count</th>
           <th className="px-4 py-2">Total Price</th>
@@ -15,10 +15,10 @@ const OldPurchasesTable = ({ items }) => {
       <tbody>
         {items.map((item) => (
           <tr key={item.id}>
-            <td className="px-4 py-2">
+            {/* <td className="px-4 py-2">
               <img src={item.image} alt={item.title} width="50" height="50" />
-            </td>
-            <td className="px-4 py-2">{item.title}</td>
+            </td> */}
+            <td className="px-4 py-2">{item.product_name}</td>
             <td className="px-4 py-2">{item.count}</td>
             <td className="px-4 py-2">${item.total_price}</td>
           </tr>
@@ -37,7 +37,7 @@ const OldPurchasesSection = () => {
       .get('http://localhost:8080/history')
       .then((response) => {
         setIsLoading(false);
-        setOldPurchases(response.data.slice(0, 5));
+        setOldPurchases(response.data);
       })
       .catch((error) => {
         setIsLoading(false);

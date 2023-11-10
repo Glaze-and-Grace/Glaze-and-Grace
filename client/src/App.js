@@ -37,34 +37,95 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <div className="App">
-          <Nav />
+       
         </div>
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
         <Routes>
-        <Route exact path="/" element={<Home openModal={openModal} />} />
+        <Route exact path="/" element={<div>
+            <Nav />
+            <Home openModal={openModal} />
+            <Footer />
+            </div>}/>
           <Route exact path="/admin" element={<YourComponent />} />
-          <Route exact path="/catalog" element={<Catalog />} />
-          <Route exact path="/registration" element={<Registration />}  />
-          <Route exact path="/cart" element={<Cart />} />
-          <Route exact path="/payment" element={<Payment />} />
+          <Route exact path="/catalog" element={<div>
+            <Nav />
+            <Catalog />
+            <Footer />
+            </div>} />
+          <Route exact path="/registration" element={<div>
+            <Nav />
+            <Registration />
+            <Footer />
+            </div>}  />
+          <Route exact path="/cart" element={<div>
+            <Nav />
+            <Cart />
+            <Footer />
+            </div>} />
+          <Route exact path="/payment" element={<div>
+            <Nav />
+            <Payment />
+            <Footer />
+            </div>} />
           {/* <Route exact path="/details/:id" element={<Details />} /> */}
-          <Route path="/details/:id" element={<Details />} />
-          <Route exact path="/aboutusintro" element={<Aboutusintro/>} />
-          <Route exact path="/Contactform" element={<Contactform />} />
-          <Route exact path="/signin" element={<Signin />} />
+          <Route path="/details/:id" element={<div>
+            <Nav />
+            <Details />
+            <Footer />
+            </div>} />
+          <Route exact path="/aboutusintro" element={<div>
+            <Nav />
+            <Aboutusintro />
+            <Footer />
+            </div>} />
+          <Route exact path="/Contactform" element={<div>
+            <Nav />
+            <Contactform/>
+            <Footer />
+            </div>} />
+          <Route exact path="/signin" element={<div>
+            <Nav />
+            <Signin />
+            <Footer />
+            </div>} />
           {/* <Route exact path="/FAQ" element={<FAQ />} /> */}
-          <Route exact path="/Profile" element={< ProfilePage/>} />
-          <Route exact path="/Edit" element={< EditItem/>} />
-          <Route exact path="/WishListPage" element={< WishListPage/>} />
-          <Route exact path="/OldPurchasesSection" element={< OldPurchasesSection/>} />
-          <Route exact path="/Cart" element={< Cart/>} />
-          <Route path="/catalog/:id" element={<CatCatalog />} />
+          <Route exact path="/Profile" element={<div>
+            <Nav />
+            <ProfilePage/>
+            <Footer />
+            </div>} />
+          <Route exact path="/Edit" element={<div>
+            <Nav />
+            <EditItem />
+            <Footer />
+            </div>} />
+          <Route exact path="/WishListPage" element={<div>
+            <Nav />
+            <WishListPage />
+            <Footer />
+            </div>} />
+          <Route exact path="/OldPurchasesSection" element={<div>
+            <Nav />
+            <OldPurchasesSection />
+            <Footer />
+            </div>} />
+          <Route exact path="/Cart" element={<div>
+            <Nav />
+            <Cart />
+            <Footer />
+            </div>} />
+          <Route path="/catalog/:id" element={<div>
+            <Nav />
+            <CatCatalog/>
+            <Footer />
+            </div>} />
 
-
+        
         </Routes>
+       
       </BrowserRouter>
-      < Footer />
+      {/* < Footer /> */}
     </AuthProvider>
   );
 }

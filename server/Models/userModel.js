@@ -6,17 +6,17 @@ async function addUser(username, email, hashPassword){
                         RETURNING id`;
         const values = [username, email, hashPassword];
         const addUser = await db.query(query, values);
+        return addUser;
 };
 
-async function login(email){
+async function getuser(email){
     try{
         const query = `select * from users where email = $1`;
         const user = await db.query(query, [email]);
         if (user.rows[0] != null){
-            // console.log(user);
-            return user.rows;
+            console.log(user.rows[0]);
+            return user.rows[0];
         } else {
-            // console.log(user);
             return "email is not found";
         }
     } catch(error){
@@ -26,5 +26,5 @@ async function login(email){
 
 module.exports = {
     addUser,
-    login
+    getuser
 };

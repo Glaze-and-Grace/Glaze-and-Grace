@@ -47,4 +47,15 @@ Dashboard.createproduct = async (product_name,product_detail,image ,price,counts
         }
       };
 
+
+      Dashboard.mesaages = async () => {
+        try{
+            console.log("here in model");
+            const query = await db.query('select * from contactus');
+            return query.rows;
+        }catch(error){
+            console.log("error in model ");
+            return "error in contactus"
+        }
+      }
 module.exports = Dashboard;

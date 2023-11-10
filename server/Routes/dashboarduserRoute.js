@@ -5,7 +5,7 @@ const dashboarduserController = require('../Controllers/dashboarduserController'
 
 
 router.get('/getallusers', dashboarduserController.getallusers);
-router.put('/updateusers', dashboarduserController.updateusers);
+router.put('/updateusers/:userId', dashboarduserController.updateusers);
 
 
 

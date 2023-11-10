@@ -142,10 +142,22 @@ const createproduct = async (req, res) => {
       }
     };
 
+async function GetContact(req, res){
+    try{
+        const getmesagges = await Dashboard.mesaages();
+        console.log("here");
+        res.status(200).json(getmesagges);
+    }catch(error){
+        console.log("error in controller");
+        res.status(404).json(error);
+    }
+}
+
   module.exports = {
     createproduct,
     productdetail,
     updateproduct,
     deleteproduct,
-    allproducts
+    allproducts,
+    GetContact
   };

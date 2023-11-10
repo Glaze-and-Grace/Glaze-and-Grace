@@ -22,7 +22,7 @@ function Signin() {
   };
 
   const redirectToLanding = () => {
-    window.location.href = "/";
+        window.location.href = "/";
   };
 
   const handleSignIn = (e) => {
@@ -30,11 +30,16 @@ function Signin() {
     axios
       .post('http://localhost:8080/login', formData)
       .then((response) => {
-        console.log(response.data);
         // window.localStorage.setItem('token', response.data);
-        Cookies.set('token', response.data);
-        login(response.data);
-        redirectToLanding();
+        // Cookies.set('token', response.data);
+        if (response.data.is_deleted == true){
+            console.log(response.data.is_deleted);
+            window.alert("you are blocked");
+        }else {
+            console.log(response.data.is_deleted);
+            redirectToLanding();
+        }
+        login(response.data.is_deleted);
         setFormData({
           email: '',
           password: '',

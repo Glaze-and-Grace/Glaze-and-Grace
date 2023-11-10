@@ -9,7 +9,7 @@ const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    fetchUserDataFromApi()
+    fetchUserDataFromApi('http://localhost:8080/userInfo')
       .then((data) => setUserData(data))
       .catch((error) => console.error(error));
   }, []);
@@ -17,10 +17,10 @@ const ProfilePage = () => {
   const fetchUserDataFromApi = async () => {
     try {
       const response = await axios.get('http://localhost:8080/userInfo');
-      if (response.status === 200) {
-        console.log(response);
-        return response.data[0];
-      }
+    //   if (response.status == 200) {
+        console.log(response.data);
+        return response.data;
+    //   }
     } catch (error) {
         console.log(error);
       throw error;
@@ -28,6 +28,8 @@ const ProfilePage = () => {
   };
 
   const handleLogout = () => {
+    localStorage.clear();
+    // document.cookie = `token=logout; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=http://localhost:3000`;
     alert('Logged out');
   };
 
@@ -57,15 +59,15 @@ const ProfilePage = () => {
 
       {/* User information */}
       <div className="flex flex-col items-center p-4 rounded-lg bg-[#F9EFE6] max-w-screen-xl mx-auto mt-4">
-        {userData ? (
-          <div className="w-64 h-64 overflow-hidden rounded-full">
-            <img src={userData.image} alt="User Avatar" className="object-cover w-full h-full" />
-          </div>
-        ) : (
-          <p>Loading user data...</p>
-        )}
-        <h2 className="mt-4 text-lg font-semibold">{userData ? userData.title : ''}</h2>
-        <p className="text-gray-600">Category: {userData ? userData.category : ''}</p>
+        {/* {userData ? ( */}
+        {/* //   <div className="w-64 h-64 overflow-hidden rounded-full"> */}
+            {/* <img src= "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.transparentpng.com%2Fcats%2Fuser-2132.html&psig=AOvVaw2kB09gmbP_lIftBE8F0RKA&ust=1699476662010000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMCzr47isoIDFQAAAAAdAAAAABAY" /> */}
+          {/* </div> */}
+        {/* ) : ( */}
+          {/* <p>Loading user data...</p> */}
+        {/* )} */}
+        <h2 className="mt-4 text-lg font-semibold">user name : {userData ? userData.username : ''}</h2>
+        <p className="text-gray-600">email : {userData ? userData.email : ''}</p>
       </div>
 
       {/* Padding between Edit and Profile */}

@@ -174,17 +174,17 @@ function Contactform() {
                                 <div class="flex items-center justify-center opacity-50 hover:opacity-100
                                 transition-opacity duration-300">
                        
-                                    <a href="#" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/mothana-majali/" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
                                         <i class="mdi mdi-linkedin text-indigo-700 mx-auto mt-2"></i>
                                     </a>
 
                         
-                                    <a href="#" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/mothana-majali/" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
                                         <i class="mdi mdi-twitter text-blue-400 mx-auto mt-2"></i>
                                     </a>
 
          
-                                    <a href="#" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/mothana-majali/" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
                                         <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
                                     </a>
                                 </div>
@@ -218,17 +218,17 @@ function Contactform() {
                                 <div class="flex items-center justify-center opacity-50 hover:opacity-100
                                 transition-opacity duration-300">
                        
-                                    <a href="#" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/sajida-ajawin/" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
                                         <i class="mdi mdi-linkedin text-indigo-500 mx-auto mt-2"></i>
                                     </a>
 
              
-                                    <a href="#" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/sajida-ajawin/" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
                                         <i class="mdi mdi-twitter text-blue-300 mx-auto mt-2"></i>
                                     </a>
 
                 
-                                    <a href="#" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/sajida-ajawin/" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
                                         <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
                                     </a>
                                 </div>
@@ -261,17 +261,17 @@ function Contactform() {
                                 <div class="flex items-center justify-center opacity-50 hover:opacity-100
                                 transition-opacity duration-300">
                        
-                                    <a href="#" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/bayan-alkhader/" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
                                         <i class="mdi mdi-linkedin text-indigo-700 mx-auto mt-2"></i>
                                     </a>
 
                    
-                                    <a href="#" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/bayan-alkhader/" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
                                         <i class="mdi mdi-twitter text-blue-400 mx-auto mt-2"></i>
                                     </a>
 
                
-                                    <a href="#" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/bayan-alkhader/" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
                                         <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
                                     </a>
                                 </div>
@@ -306,17 +306,17 @@ function Contactform() {
                                 <div class="flex items-center justify-center opacity-50 hover:opacity-100
                                 transition-opacity duration-300">
                           
-                                    <a href="#" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/meladabulail/" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
                                         <i class="mdi mdi-linkedin text-indigo-700 mx-auto mt-2"></i>
                                     </a>
 
                               
-                                    <a href="#" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/meladabulail/" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
                                         <i class="mdi mdi-twitter text-blue-400 mx-auto mt-2"></i>
                                     </a>
 
                                    
-                                    <a href="#" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/meladabulail/" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
                                         <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
                                     </a>
                                 </div>
@@ -349,17 +349,17 @@ Hantash
                                 <div class="flex items-center justify-center opacity-50 hover:opacity-100
                                 transition-opacity duration-300">
                        
-                                    <a href="#" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/sanad-hantash/" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
                                         <i class="mdi mdi-linkedin text-indigo-700 mx-auto mt-2"></i>
                                     </a>
 
                    
-                                    <a href="#" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/sanad-hantash/" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
                                         <i class="mdi mdi-twitter text-blue-400 mx-auto mt-2"></i>
                                     </a>
 
                
-                                    <a href="#" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/sanad-hantash/" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
                                         <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
                                     </a>
                                 </div>
@@ -390,17 +390,17 @@ Dahamsheh
                                 <div class="flex items-center justify-center opacity-50 hover:opacity-100
                                 transition-opacity duration-300">
                        
-                                    <a href="#" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/loay-dahamsheh/" class="flex rounded-full hover:bg-indigo-50 h-10 w-10">
                                         <i class="mdi mdi-linkedin text-indigo-700 mx-auto mt-2"></i>
                                     </a>
 
                    
-                                    <a href="#" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/loay-dahamsheh/" class="flex rounded-full hover:bg-blue-50 h-10 w-10">
                                         <i class="mdi mdi-twitter text-blue-400 mx-auto mt-2"></i>
                                     </a>
 
                
-                                    <a href="#" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
+                                    <a href="https://www.linkedin.com/in/loay-dahamsheh/" class="flex rounded-full hover:bg-orange-50 h-10 w-10">
                                         <i class="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
                                     </a>
                                 </div>
@@ -412,15 +412,6 @@ Dahamsheh
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
 </div>
     </div>
   );

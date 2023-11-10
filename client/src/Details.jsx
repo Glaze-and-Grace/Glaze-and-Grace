@@ -6,6 +6,7 @@ import CartIcon from './Vector.png';
 import HeartIcon from './Frame.png'
 // import RatingSystem from './RatingSystem';
 import Comments from './Comments';
+import swal from "sweetalert";
 
 function Details() {
   const { id } = useParams();
@@ -20,6 +21,23 @@ function Details() {
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
+  };
+
+  const handleAddToCart = () => {
+    // if (!isAuthenticated) {
+    //   openModal();
+    // } else {
+        const count = quantity;
+      axios
+        .post(`http://localhost:8080/addtocart/${id}`, count)
+        .then((response) => {
+            
+          swal("Done!", "product has been added to cart", "success");
+        })
+        .catch((error) => {
+          console.error("Error adding product to wishlist:", error);
+        });
+    // }
   };
 
   useEffect(() => {
@@ -41,8 +59,7 @@ function Details() {
     //   openModal();
     // } else {
         try {
-            console.log("sdsdsdsdsdsdsdsdsd");
-            const response = await axios.post(`http://localhost:8080/addwishlist/${30}`);
+            const response = await axios.post(`http://localhost:8080/addwishlist/${id}`);
               console.log(response);
               console.log(id);
             //   return response.data[0];
@@ -78,7 +95,7 @@ function Details() {
 
   
 return (
-    <section class="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
+    <section class="overflow-hidden bg-white py-11 font-poppins gray:bg-gray-800">
         <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
             <div class="flex flex-wrap -mx-4">
                 <div class="w-full px-4 md:w-1/2 ">
@@ -186,7 +203,7 @@ return (
       <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
         <button
           className="flex items-center justify-center w-full p-4 text-white border border-[#17403C] rounded-md hover:bg-[#C3CAC3] hover:border-[#C3CAC3] bg-[#17403C]"
-        //   onClick={handleAddToCart}
+          onClick={handleAddToCart}
         >
           <img src={CartIcon} alt="Cart Icon" className="w-6 h-6 mr-2" />
           Add to Cart
@@ -195,7 +212,7 @@ return (
       <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
         <button
           className="flex items-center justify-center w-full p-4 text-white border border-[#C3CAC3] rounded-md hover:bg-[#C3CAC3] hover:border-[#C3CAC3] bg-[#17403C]"
-          onClick={handleAddToWishlist}
+          onClick={handleAddToCart}
         >
           <img src={HeartIcon} alt="Heart Icon" className="w-6 h-6 mr-2" />
           Add to wishlist

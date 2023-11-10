@@ -17,6 +17,7 @@ const reactionRoute = require('./Routes/reactionRoute');
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use(cookieParser());
 

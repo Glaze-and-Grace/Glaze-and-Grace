@@ -7,7 +7,7 @@ const UserDashboard = () => {
   useEffect(() => {
     // Fetch users from your API endpoint
     axios
-      .get("http://localhost:3000/users")
+      .get("http://localhost:8080/getallusers")
       .then((response) => {
         setUsers(response.data);
       })
@@ -22,8 +22,9 @@ const UserDashboard = () => {
 
     // Send a request to block/unblock the user using Axios.
     axios
-      .put(`http://localhost:3000/users/${userId}`, { is_deleted: !isDeleted })
+      .put(`http://localhost:8080/updateusers/${userId}`)
       .then((response) => {
+        console.log(userId);
         // Handle the successful response
         if (isDeleted) {
           alert("User unblocked successfully");
@@ -57,7 +58,7 @@ const UserDashboard = () => {
                 key={user.id}
                 className="border-b border-gray-300 text-center"
               >
-                <td className="p-2 text-sm">{user.user_name}</td>
+                <td className="p-2 text-sm">{user.username}</td>
                 <td className="p-2 text-sm">{user.email}</td>
                 <td className="p-2 text-sm">
                   {user.is_active ? "Active" : "Inactive"}

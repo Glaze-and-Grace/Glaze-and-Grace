@@ -18,7 +18,8 @@ async function postcontactus(req, res) {
 
 async function getmessages(req, res){   
     try{
-        const get = gatall();
+        console.log("contactus controller");
+        const get = await contactModel.gatall();
         res.status(200).json(get);
     }catch(error){
         res.status(500).json(error);
