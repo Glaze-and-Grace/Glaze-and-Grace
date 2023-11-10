@@ -5,6 +5,11 @@ const Joi = require('joi');
 const Cookies = require('js-cookie');
 require('dotenv').config();
 
+// const express = require('express');
+// const app = express();
+// const cookieParser = require('cookie-parser');
+// app.use(cookieParser());
+
 const schema = Joi.object({
     username : Joi.string().alphanum().min(3).max(10).required(),
     email : Joi.string().email().required(),
@@ -45,19 +50,17 @@ async function login(req, res){
         const {email, password} = req.body;
         const valid = validation("anything", email, password);
         if (valid){
-            const getUser = user.login(email);
+            const getUser = user.getuser(email);
             getUser.then((value) => {
                 bcrypt.compare(password, value.password, (error, result) => {
                     if (error) {
-                        const accessToken = jwt.sign({id : value.id, username : value.username, email : value.email},process.env.SECRET_KEY, {expiresIn: '8h'});
-                        res.cookie('token', accessToken, { httpOnly: true });
-                        console.log(value);
-                        res.status(200).json(value[0].role_id);
-                        // res.status(400).json('email not found');
+                        console.log(error)
+                        res.status(400).json(error);
                     } else if (result) {
-                        const accessToken = jwt.sign({id : value.id, username : value.username, email : value.email},process.env.SECRET_KEY, {expiresIn: '8h'});
-                        res.cookie('token', accessToken, { httpOnly: true });
-                        res.status(200).json(value.role_id);
+                        const accessToken = jwt.sign({id : result.id, username : result.username, email : result.email},process.env.SECRET_KEY, {expiresIn: '8h'});
+                        res.cookie("token" , accessToken,{path: 'http://localhost:3000', httpOnly: true }, { maxAge: 900000, httpOnly: true})
+                        console.log(accessToken);
+                        res.status(200).json(value);
                     } else {
                         res.status(400).json('incorrect password');
                     }

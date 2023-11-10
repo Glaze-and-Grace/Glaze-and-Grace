@@ -14,12 +14,11 @@ async function getallusers(req, res) {
 
 
   async function updateusers(req, res) {
-    
-    
     try {
-        const userId = req.body.id;
-        const newData = req.body;
-        const result = await userModel.deleteUser(userId, newData);
+        const userId = req.params.userId;
+        console.log(userId);
+        // const newData = req.body;
+        const result = await userModel.deleteUser(userId);
       res.status(200).json({ message: 'User updated successfully' });
     } catch (error) {
       console.error(error);

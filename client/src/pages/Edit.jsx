@@ -4,11 +4,11 @@ import axios from 'axios';
 const EditItem = () => {
   const [item, setItem] = useState({
     id: 0,
-    title: '',
-    price: 0,
-    description: '',
-    category: '',
-    image: null,
+    username: '',
+    email: '',
+    // description: '',
+    // category: '',
+    // image: null,
   });
   const [isEditing, setIsEditing] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
@@ -35,12 +35,12 @@ const EditItem = () => {
 
   const handleSave = () => {
     const formData = new FormData();
-    formData.append('id', item.id);
-    formData.append('title', item.title);
-    formData.append('price', item.price);
-    formData.append('description', item.description);
-    formData.append('category', item.category);
-    formData.append('image', item.image);
+    formData.append('id', localStorage.getItem('token'));
+    formData.append('username', item.username);
+    formData.append('email', item.email);
+    // formData.append('description', item.description);
+    // formData.append('category', item.category);
+    // formData.append('image', item.image);
 
     axios
       .put(`http://localhost:8080/edituser`, formData)
@@ -55,8 +55,10 @@ const EditItem = () => {
 
   useEffect(() => {
     axios
-      .get('https://fakestoreapi.com/products/1')
+    // /userInfo
+      .get('http://localhost:8080/userInfo')
       .then((response) => {
+        console.log(response.data);
         setItem(response.data);
       })
       .catch((error) => {
@@ -72,27 +74,27 @@ const EditItem = () => {
           <input
             type="text"
             name="title"
-            value={item.title}
+            value={item.username}
             onChange={handleInputChange}
             className="w-full p-2 mb-2 border rounded"
           />
           <label>Email</label>
           <input
-            type="number"
+            type="text"
             name="price"
-            value={item.price}
+            value={item.email}
             onChange={handleInputChange}
             className="w-full p-2 mb-2 border rounded"
           />
-          <label>New Password</label>
+          {/* <label>New Password</label>
           <input
             type="text"
             name="category"
             value={item.category}
             onChange={handleInputChange}
             className="w-full p-2 mb-2 border rounded"
-          />
-          <div>
+          /> */}
+          {/* <div>
             <h2>Image</h2>
             <input
               type="file"
@@ -107,7 +109,7 @@ const EditItem = () => {
                 style={{ width: '200px', height: '200px' }}
               />
             )}
-          </div>
+          </div> */}
 
           <button
             onClick={handleSave}

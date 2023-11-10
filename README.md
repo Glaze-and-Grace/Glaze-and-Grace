@@ -13,12 +13,12 @@
 * used with => JWT - Joi - Multer - OAuth
 
 ## Meet the Team
-* Mothana Almajali - [Scrum Master]
-* Sajida Ajawin - [Product Owner]
-* Bayan alkhader [Quality Assurance]
-* Melad Abuali - [Member]
-* Sanad Hantash - [Member]
-* lo'i Dahmsheh - [Member]
+* Mothana Almajali - [Scrum Master] [github]()
+* Sajida Ajawin - [Product Owner] [github]()
+* Bayan alkhader [Quality Assurance] [github]()
+* Melad Abuali - [Member] [github]()
+* Sanad Hantash - [Member] [github]()
+* lo'i Dahmsheh - [Member] [github]()
 
 ## Explore the Design
 [Figma](https://www.figma.com/file/ZenMKGmz6cy4Eef6Hh3UKp/Glaze-and-Grace?type=design&node-id=0-1&mode=design&t=rBdaY2ioWw5syx2b-0)

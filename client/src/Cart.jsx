@@ -4,13 +4,27 @@ import Counter from "./Counter";
 import { Link } from 'react-router-dom';
 
 
+
 const Cart = () => {
   const [cartProduct, setCartProduct] = useState([]);
+  const [total,setTotal]=useState();
 
   useEffect(() => {
-    axios.get('our endpoint for cart')
+    axios.get('http://localhost:8080/shoppingcart')
       .then((response) => {
-        setCartProduct(response.data);
+        console.log(response.data.shoppingcart);
+        setCartProduct(response.data.shoppingcart);
+      })
+      .catch((error) => {
+        console.error('An error occurred:', error);
+      });
+  }, []);
+  
+  useEffect(() => {
+    axios.get('http://localhost:8080/shoppingcart/totalprice')
+      .then((response) => {
+        console.log(response.data.total[0].sum);
+        setTotal(response.data.total[0].sum);
       })
       .catch((error) => {
         console.error('An error occurred:', error);
@@ -30,7 +44,7 @@ const Cart = () => {
           quantity: updatedCart.find((item) => item.id === productId).quantity,
         })
         .then((response) => {
-         
+            console.log(response);
         })
         .catch((error) => {
           console.error('An error occurred:', error);
@@ -40,11 +54,12 @@ const Cart = () => {
     });
   };
 
-  const handleRemoveItem = (productId) => {
-    axios.delete(`our endpoint for cart`)
+  const handleRemoveItem = (id) => {
+    console.log(id);
+    axios.delete(`http://localhost:8080/product/delete/${id}`)
       .then((response) => {
       
-        const updatedCart = cartProduct.filter((item) => item.id !== productId);
+        const updatedCart = cartProduct.filter((item) => item.id !== id);
         setCartProduct(updatedCart);
       })
       .catch((error) => {
@@ -53,29 +68,29 @@ const Cart = () => {
   };
 
   return (
-    <section className="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="h-full  py-12 sm:py-16 lg:py-20">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="flex items-center justify-center">
           <h1 className="text-2xl font-semibold text-[#17403C] ">Your Cart</h1>
         </div>
 
         {cartProduct.length > 0 ? (
           <div className="mx-auto mt-8 max-w-2xl md:mt-12">
-            <div className="bg-white shadow">
+            <div className="bg-gray-50 shadow">
               <div className="px-4 py-6 sm:px-8 sm:py-10">
                 <div className="flow-root">
                   <ul className="-my-8">
                     {cartProduct.map((product) => (
                       <li className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0" key={product.id}>
                         <div className="shrink-0">
-                          <img className="h-24 w-24 max-w-full rounded-lg object-cover" src={product.image} alt="" />
+                          <img className="h-24 w-24 max-w-full rounded-lg object-cover" src={require(`../src/assets/uploads/${product.images[0]}`)} alt="" />
                         </div>
 
                         <div className="relative flex flex-1 flex-col justify-between">
                           <div className="sm:col-gap-5 sm:grid sm:grid-cols-2">
                             <div className="pr-8 sm:pr-5">
-                              <p className="text-base font-semibold text-gray-900">{product.title}</p>
-                              <p className="mt-1 text-xs text-gray-700">{product.size}</p>
+                              <p className="text-base font-semibold text-gray-900">{product.name}</p>
+                              <p className="mt-1 text-xs text-gray-700">{product.counts}</p>
                             </div>
 
                             <div className="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
@@ -106,7 +121,8 @@ const Cart = () => {
                   <div className="flex items-center justify-between">
                     <p className="text-sm text-gray-400">Subtotal</p>
                     <p className="text-lg font-semibold text-gray-900">${
-                      cartProduct.reduce((total, product) => total + product.price * product.quantity, 0)
+                    //   cartProduct.reduce((total, product) => total + product.price * product.quantity, 0)
+                    total
                     }</p>
                   </div>
                   <div className="flex items-center justify-between">
@@ -118,7 +134,7 @@ const Cart = () => {
                 <div className="mt-6 flex items-center justify-between">
                   <p className="text-sm font-medium text-gray-900">Total</p>
                   <p className="text-2xl font-semibold text-gray-900"><span className="text-xs font-normal text-gray-400">USD</span> ${
-                    cartProduct.reduce((total, product) => total + product.price * product.quantity, 0) + 8
+                    parseInt(total + 8)
                   }</p>
                 </div>
 

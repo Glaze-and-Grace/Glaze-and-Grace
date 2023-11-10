@@ -19,6 +19,7 @@ async function contactus(user_name, user_email, user_message) {
 
 async function gatall(){
     try{
+        console.log("contactus");
         const query = 'select * from contactus';
         const result = await db.query(query);
         return result.rows;

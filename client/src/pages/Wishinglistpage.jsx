@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const WishlistPage = ({ items, onRemove }) => {
   return (
@@ -13,10 +14,10 @@ const WishlistPage = ({ items, onRemove }) => {
       <tbody>
         {items.map((item) => (
           <tr key={item.id}>
-            <td className="px-4 py-2">
+            {/* <td className="px-4 py-2">
               <img src={item.image} alt={item.title} width="50" height="50" />
-            </td>
-            <td className="px-4 py-2">{item.title}</td>
+            </td> */}
+            <td className="px-4 py-2">{item.product_name}</td>
             <td className="px-4 py-2">${item.price}</td>
             <td className="px-4 py-2">
               <button
@@ -37,17 +38,25 @@ const WishListPage = () => {
   const [wishListItems, setWishListItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleRemove = (itemId) => {
-    const updatedItems = wishListItems.filter((item) => item.id !== itemId);
-    setWishListItems(updatedItems);
-  };
+  function Remove(id) {
+    // const apiUrl = `http://localhost:8080/editwishlis/${id}`;
+    console.log(id)
+    axios.delete(`http://localhost:8080/editwishlist/${id}`)
+      .then(function (response) {
+        console.log('Data successfully sent:', response.data);
+      })
+      .catch(function (error) {
+        console.error('Error:', error);
+      });
+  }
 
   useEffect(() => {
     fetch('http://localhost:8080/wishlist')
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setIsLoading(false);
-        setWishListItems(data.slice(0, 10));
+        setWishListItems(data);
       })
       .catch((error) => {
         setIsLoading(false);
@@ -61,7 +70,7 @@ const WishListPage = () => {
       {isLoading ? (
         <p>Loading wish list items...</p>
       ) : (
-        <WishlistPage items={wishListItems} onRemove={handleRemove} />
+        <WishlistPage items={wishListItems} onRemove={Remove} />
       )}
     </div>
   );

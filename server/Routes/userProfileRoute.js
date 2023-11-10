@@ -2,13 +2,15 @@ const express = require('express');
 const router = express.Router();
 const middleware = require('../middleware/authorization');
 const userProfileController = require('../Controllers/userProfileController');
+const cookieParser = require('cookie-parser');
+router.use(cookieParser());
 
-router.get('/userInfo', middleware.authorize, userProfileController.information);
-router.get('/wishlist', middleware.authorize, userProfileController.wishlist);
-router.get('/history', middleware.authorize, userProfileController.history);
+router.get('/userInfo' , userProfileController.information);
+router.get('/wishlist', userProfileController.wishlist);
+router.get('/history', userProfileController.history);
 router.post('/addwishlist/:id', userProfileController.addtowishlist);
-router.put('/edituser', middleware.authorize, userProfileController.editInformation);
-router.put('/editwishlist', middleware.authorize, userProfileController.editWishlist);
-// logout
+router.put('/edituser', userProfileController.editInformation);
+router.delete('/editwishlist/:id', userProfileController.editWishlist);
+router.post('/logout', userProfileController.logout);
 
 module.exports = router;

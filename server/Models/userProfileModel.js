@@ -1,20 +1,26 @@
+const { query } = require('express');
 const db = require('../config');
 
 async function getInfornation(id){
     try{
-        console.log(id);
+        console.log(4545455454);
         const query = `select username, email from users where id = $1`;
         const User = await db.query(query, [id]);
+        console.log(User.rows[0]);
         return User.rows[0];
     }catch(error){
-        res.status(500).json(error);
+       return error;
     }
 };
 
 async function getWishlist(id){
     try{
-        const query = `select * from wishlist where user_id = $1`;
+        const query = `SELECT wishlist.created_at, products.price,wishlist.id, products.product_name
+        FROM wishlist
+        INNER JOIN products ON products.id = wishlist.product_id
+        WHERE wishlist.user_id = $1;`;
         const wishlist = await db.query(query, [id]);
+        console.log(wishlist.rows);
         return wishlist.rows;
     }catch(error){
         res.status(500).json(error);
@@ -23,7 +29,7 @@ async function getWishlist(id){
 
 async function getHistory(id){
     try{
-        const query = `select * from history where user_id = $1`;
+        const query = `select * , products.product_name from shopping_cart inner join products on products.id = shopping_cart.product_id where user_id = $1`;
         const history = await db.query(query, [id]);
         return history.rows;
     }catch(error){
@@ -33,9 +39,10 @@ async function getHistory(id){
 
 async function deleteFromWishlist(id, product_id){
     try{
-        const query = `DELETE FROM wishlist
-        WHERE user_id = $1 AND product_id = $2;`;
-        const history = await db.query(query, [id, product_id]);
+        console.log(id);
+        const query = `DELETE FROM wishlist WHERE id = $1;`;
+        const result = await db.query(query, [id]);
+        return result;
     }catch(error){
         res.status(500).json(error);
     }
@@ -57,11 +64,20 @@ async function editInfo(id, username, email){
 
 async function addwish(userID,productID){
     try{    
+        console.log(userID,productID);
         const query = 'insert into wishlist (product_id, user_id) values ($1, $2)';
-        const add = await db.query(query, [userID,productID]);
+        const add = await db.query(query, [productID, userID]);
         return 'done';
     }catch(error) {
         return error;
+    }
+};
+
+async function off(id){
+    try{
+        const offuser = await db.query(`UPDATE users SET is_active = 'false' WHERE id = $1;`, [id]);
+    }catch(error){
+        res.status(500).json(error);
     }
 }
 
@@ -71,5 +87,6 @@ module.exports = {
     getHistory,
     deleteFromWishlist,
     editInfo,
-    addwish
+    addwish,
+    off
 };

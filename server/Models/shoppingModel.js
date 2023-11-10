@@ -1,7 +1,7 @@
 const db = require('../config');
 const Shopping = {};
 
-Shopping.addtocart = async (productId, user_id, count, total_Price) => {
+Shopping.addtocart = async (productId, user_id, count, total_price) => {
     try {
         const totalPriceQuery = await db.query(
             `
@@ -89,9 +89,8 @@ Shopping.getcartproducts = async (userID) => {
 
   Shopping.deleteproduct = async (productId) => {
         try {
-
-          const result = await db.query('delete  from shopping_cart  WHERE product_id = $1', [productId]);
-          return result.rows;
+          const result = await db.query('delete from shopping_cart WHERE id = $1', [productId]);
+          return 'done';
         } catch (err) {
           throw err;
         }

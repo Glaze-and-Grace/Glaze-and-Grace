@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import swal from "sweetalert";
+
 
 const ProductCard = ({
   id,
@@ -14,34 +16,33 @@ const ProductCard = ({
 }) => {
   const { isAuthenticated } = useAuth();
 
- const handleAddToCart = async () => {
+  const handleAddToCart = () => {
     if (!isAuthenticated) {
       openModal();
     } else {
-        try {
-            const response = await axios.post(`http://localhost:8080/addtocart/${id}`, 10);
-              console.log(response);
-            //   return response.data[0];
-          } catch (error) {
-              console.log(error);
-            throw error;
-          }
+      axios
+        .post(`http://localhost:8080/addtocart/${id}`)
+        .then((response) => {
+          swal("Done!", "product has been added to cart", "success");
+        })
+        .catch((error) => {
+          console.error("Error adding product to wishlist:", error);
+        });
     }
   };
 
-  const handleAddToWishlist = async () => {
+  const handleAddToWishlist = () => {
     if (!isAuthenticated) {
       openModal();
     } else {
-        try {
-            const response = await axios.post(`http://localhost:8080/addwishlist/30`);
-              console.log(response);
-              console.log(id);
-            //   return response.data[0];
-          } catch (error) {
-              console.log(error);
-            throw error;
-          }
+      axios
+        .post(`http://localhost:8080/addwishlist/${id}`)
+        .then((response) => {
+          swal("Done!", "product has been added to wishlist", "success");
+        })
+        .catch((error) => {
+          console.error("Error adding product to wishlist:", error);
+        });
     }
   };
   return (
