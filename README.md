@@ -1,6 +1,6 @@
 ## Glaze-and-Grace
 
-### Welcome to HomeDecorationHub, your one-stop destination for premium home decoration products. Whether you're looking for elegant tableware, stylish drinkware, durable cookware, or decorative items to elevate your living spaces, we have a wide range of options to enhance your home's aesthetics. Our website is built using a combination of modern technologies to ensure a seamless and user-friendly shopping experience.
+### Welcome to Glaze-and-Grace, your one-stop destination for premium home decoration products. Whether you're looking for elegant tableware, stylish drinkware, durable cookware, or decorative items to elevate your living spaces, we have a wide range of options to enhance your home's aesthetics. Our website is built using a combination of modern technologies to ensure a seamless and user-friendly shopping experience.
 
 ## Technologies Used
 * HTML
