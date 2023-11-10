@@ -13,7 +13,7 @@
 * used with => JWT - Joi - Multer - OAuth
 
 ## Meet the Team
-* Mothana Almajali - [Scrum Master] [github]()
+* Mothana Almajali - [Scrum Master] [github](https://github.com/mothana404)
 * Sajida Ajawin - [Product Owner] [github]()
 * Bayan alkhader [Quality Assurance] [github]()
 * Melad Abuali - [Member] [github]()
